@@ -17,13 +17,13 @@ Codex-native operations workspace for Flutter and Firebase apps.
 Add this repo inside an existing app:
 
 ```bash
-git submodule add https://github.com/you/mobile-ops .mobile-ops
+git submodule add https://github.com/mehmetfiskindal/mobile-ops .mobile-ops
 ```
 
 Or copy it without git history:
 
 ```bash
-npx degit you/mobile-ops .mobile-ops
+npx degit mehmetfiskindal/mobile-ops .mobile-ops
 ```
 
 Then ask Codex:

@@ -4,6 +4,11 @@ Codex-native operations workspace for Flutter and Firebase apps.
 
 `mobile-ops` is a template repo for auditing Flutter + Firebase projects before release. It gives Codex repo-specific instructions, repeatable workflows, store metadata templates, and small shell scripts that perform real checks.
 
+It can be used in two ways:
+
+- as a `.mobile-ops/` folder inside a Flutter app
+- as a local Codex plugin from this repo
+
 ## MVP Workflows
 
 - Firebase security audit
@@ -46,6 +51,28 @@ These are human-friendly prompts, not installed shell commands:
 /mobile-ops privacy-check
 ```
 
+## Codex Plugin Usage
+
+This repo includes a local Codex plugin scaffold:
+
+```text
+.agents/plugins/marketplace.json
+plugins/mobile-ops/.codex-plugin/plugin.json
+plugins/mobile-ops/skills/mobile-ops/SKILL.md
+```
+
+When the local plugin is installed or enabled in Codex, use the same prompt shortcuts from the root of a Flutter app:
+
+```text
+/mobile-ops firebase-audit
+/mobile-ops android-release
+/mobile-ops ios-release
+/mobile-ops aso-review
+/mobile-ops privacy-check
+```
+
+The plugin tells Codex to inspect standard Flutter, Firebase, Android, iOS, store metadata, and privacy files, then run matching scripts from `.mobile-ops/scripts/` when this repo is embedded in the app. If you are working directly in this repo, it uses `scripts/` instead.
+
 ## Local Script Usage
 
 From the root of a Flutter app:
@@ -77,6 +104,8 @@ mobile-ops/
 ├── profiles/
 ├── prompts/
 ├── store/
+├── .agents/plugins/
+├── plugins/mobile-ops/
 └── examples/
 ```
 

@@ -6,41 +6,43 @@ Use this workflow when the user asks for `/mobile-ops firebase-audit` or says:
 Follow workflows/firebase-audit.md and audit this Flutter Firebase project.
 ```
 
-## Steps
+## Purpose
 
-1. Inspect Firebase project files:
-   - `firebase.json`
-   - `.firebaserc`
-   - `lib/firebase_options.dart`
-   - `android/app/google-services.json`
-   - `ios/Runner/GoogleService-Info.plist`
-2. Run:
+Find Firebase configuration, security, rules, App Check, and secret-handling risks before release.
 
-   ```bash
-   .mobile-ops/scripts/firebase-audit.sh
-   ```
+## Files To Inspect
 
-   If the repo is not installed as `.mobile-ops`, run the equivalent script path.
+- `firebase.json`
+- `.firebaserc`
+- `lib/firebase_options.dart`
+- `android/app/google-services.json`
+- `ios/Runner/GoogleService-Info.plist`
+- `firestore.rules`
+- `storage.rules`
+- `database.rules.json`
+- Firebase-related Dart, Android, and iOS code
 
-3. Search for risky material:
-   - service account JSON
-   - private keys
-   - keystores
-   - API tokens
-   - accidentally committed `.env` files
-4. Inspect App Check usage in `lib/`, `ios/`, and `android/`.
-5. Inspect Firebase Auth, Firestore, Realtime Database, Storage, Functions, Messaging, Analytics, and Crashlytics references when present.
-6. If rules files exist, inspect:
-   - `firestore.rules`
-   - `storage.rules`
-   - `database.rules.json`
-7. Summarize:
-   - critical risks
-   - medium risks
-   - missing hardening
-   - recommended patches
-   - commands already run
+## Commands To Run
+
+Run:
+
+```bash
+.mobile-ops/scripts/firebase-audit.sh
+.mobile-ops/scripts/check-secrets.sh
+.mobile-ops/scripts/check-firebase-rules.sh
+```
+
+If the repo is not installed as `.mobile-ops`, run the equivalent script path.
+
+## Risk Signals
+
+- Committed service account JSON, private keys, tokens, `.env`, keystores, or signing files
+- Missing or permissive Firebase rules
+- Missing App Check for production apps
+- Firebase config for the wrong environment
+- Public Storage or Firestore access without clear business need
+- Crashlytics, Analytics, or Messaging usage missing privacy disclosure
 
 ## Output Format
 
-Start with a release-blocking summary. Do not expose secret values. Refer to secret locations by path and line when possible.
+Use `reports/firebase-audit-report.md`. Start with release blockers. Do not expose secret values. Refer to secret locations by path and line when possible.

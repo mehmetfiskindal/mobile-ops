@@ -17,6 +17,8 @@ Always inspect these files when they exist:
 - `ios/Runner/Info.plist`
 - `ios/Podfile`
 - `lib/firebase_options.dart`
+- `store/`
+- `.mobile-ops/store/`
 - app store metadata files, release notes, screenshots, and privacy files if available
 
 ## Available Workflows
@@ -33,11 +35,14 @@ Always inspect these files when they exist:
 
 - Prefer reading the project before making changes.
 - Run the relevant script in `scripts/` when a workflow asks for it.
+- Treat scripts as signal collectors. Interpret their output and produce a clear risk report.
 - Summarize risks before suggesting a release.
 - Never expose secrets. If you find API keys, service accounts, signing files, keystores, provisioning profiles, tokens, or credentials, report the risk and suggest safer handling.
 - Do not paste secret values into the final answer.
 - When recommending patches, keep them scoped to the mobile app operation being audited.
 - If the project uses flavors, environments, or multiple Firebase apps, identify which environment each finding applies to.
+- Use files in `reports/` as report shapes when the workflow references them.
+- Use files in `profiles/` only when the user or project context clearly matches the profile.
 
 ## MVP Commands
 
@@ -50,3 +55,13 @@ These are not real shell slash commands. They are prompt shortcuts users can giv
 - `/mobile-ops privacy-check`
 
 When the user gives one of these prompts, follow the matching file in `workflows/`.
+
+## Expansion Principle
+
+Every new capability should do at least one of these:
+
+- Give Codex better instructions.
+- Collect better operational signals.
+- Produce a more consistent report.
+
+Avoid turning this repo into a generic Flutter generator, Firebase console replacement, or custom AI runtime.

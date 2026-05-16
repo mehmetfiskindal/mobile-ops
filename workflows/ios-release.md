@@ -2,53 +2,41 @@
 
 Use this workflow when the user asks for `/mobile-ops ios-release`.
 
-## Steps
+## Purpose
 
-1. Run Flutter doctor:
+Check iOS release readiness for a Flutter app before App Store submission.
 
-   ```bash
-   .mobile-ops/scripts/flutter-doctor.sh
-   ```
+## Files To Inspect
 
-2. Inspect `pubspec.yaml` version.
-3. Inspect iOS project files:
-   - `ios/Runner.xcodeproj`
-   - `ios/Runner/Info.plist`
-   - `ios/Podfile`
-   - `ios/Runner.xcworkspace`
-4. Check:
-   - bundle identifier
-   - display name
-   - deployment target
-   - permissions usage descriptions
-   - signing team references
-   - build number and version
-5. Run:
+- `pubspec.yaml`
+- `ios/Runner.xcodeproj`
+- `ios/Runner.xcworkspace`
+- `ios/Runner/Info.plist`
+- `ios/Podfile`
+- signing configuration and CI references
 
-   ```bash
-   flutter analyze
-   ```
+## Commands To Run
 
-6. Run tests if available:
+```bash
+.mobile-ops/scripts/flutter-doctor.sh
+.mobile-ops/scripts/check-versioning.sh
+.mobile-ops/scripts/check-permissions.sh
+flutter analyze
+flutter test
+.mobile-ops/scripts/build-ios.sh
+```
 
-   ```bash
-   flutter test
-   ```
+If tests do not exist, Xcode is unavailable, or codesigning is intentionally skipped, report that clearly.
 
-7. Build iOS release without codesigning:
+## Risk Signals
 
-   ```bash
-   .mobile-ops/scripts/build-ios.sh
-   ```
-
-8. Summarize App Store readiness and release risks.
+- Missing or inconsistent version/build number
+- Missing usage descriptions for requested permissions
+- Bundle identifier mismatch
+- Deployment target drift
+- Signing or provisioning assumptions not documented
+- Failing analyze, tests, or no-codesign build
 
 ## Output Format
 
-Report:
-
-- release blockers
-- signing and provisioning risks
-- privacy permission risks
-- test/build result
-- App Store Connect readiness notes
+Use `reports/release-readiness-report.md`. Report release blockers, signing and provisioning risks, privacy permission risks, test/build result, and App Store Connect readiness notes.

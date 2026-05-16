@@ -12,6 +12,8 @@ Codex-native operations workspace for Flutter and Firebase apps.
 - ASO review
 - Privacy check
 
+Each workflow follows the same idea: Codex reads project context, runs small signal-collection scripts, then writes a release-focused report.
+
 ## Use In A Flutter Project
 
 Add this repo inside an existing app:
@@ -50,6 +52,11 @@ From the root of a Flutter app:
 
 ```bash
 .mobile-ops/scripts/firebase-audit.sh
+.mobile-ops/scripts/check-secrets.sh
+.mobile-ops/scripts/check-firebase-rules.sh
+.mobile-ops/scripts/check-permissions.sh
+.mobile-ops/scripts/check-store-metadata.sh
+.mobile-ops/scripts/check-versioning.sh
 .mobile-ops/scripts/flutter-doctor.sh
 .mobile-ops/scripts/build-android.sh
 .mobile-ops/scripts/build-ios.sh
@@ -66,7 +73,41 @@ mobile-ops/
 ├── workflows/
 ├── templates/
 ├── scripts/
+├── reports/
+├── profiles/
+├── prompts/
+├── store/
 └── examples/
+```
+
+## Store Metadata Convention
+
+For app projects, keep store metadata in:
+
+```text
+store/
+├── app-store/
+├── play-store/
+└── privacy/
+```
+
+See [store/README.md](store/README.md) for the exact file names.
+
+## Profiles
+
+Profiles tune the risk posture without changing the core idea:
+
+- `profiles/indie-app.md`
+- `profiles/startup-production.md`
+- `profiles/kids-app.md`
+- `profiles/subscription-app.md`
+- `profiles/ads-supported-app.md`
+- `profiles/enterprise-app.md`
+
+Example prompt:
+
+```text
+Use .mobile-ops/profiles/subscription-app.md while following .mobile-ops/workflows/privacy-check.md.
 ```
 
 ## Security Note

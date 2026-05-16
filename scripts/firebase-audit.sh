@@ -13,6 +13,7 @@ echo
 echo "Searching for risky keys and credentials..."
 grep -RInE "AIza|BEGIN PRIVATE KEY|private_key|client_secret|service_account|refresh_token|APP_STORE_CONNECT|PLAY_STORE|SENTRY_DSN" . \
   --exclude-dir=.git \
+  --exclude-dir=.mobile-ops \
   --exclude-dir=build \
   --exclude-dir=.dart_tool \
   --exclude-dir=node_modules \
@@ -23,6 +24,7 @@ echo
 echo "Checking App Check references..."
 grep -RInE "FirebaseAppCheck|firebase_app_check|AppCheck|DeviceCheck|PlayIntegrity|SafetyNet" lib ios android \
   --exclude-dir=build \
+  --exclude-dir=.mobile-ops \
   --exclude-dir=.dart_tool \
   --exclude-dir=Pods 2>/dev/null || true
 

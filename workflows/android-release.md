@@ -2,55 +2,42 @@
 
 Use this workflow when the user asks for `/mobile-ops android-release`.
 
-## Steps
+## Purpose
 
-1. Run Flutter doctor:
+Check Android release readiness for a Flutter app before Play Store submission.
 
-   ```bash
-   .mobile-ops/scripts/flutter-doctor.sh
-   ```
+## Files To Inspect
 
-2. Inspect `pubspec.yaml` version.
-3. Inspect Android signing config:
-   - `android/app/build.gradle`
-   - `android/app/build.gradle.kts`
-   - `android/key.properties`
-   - CI secret references
-4. Check Android SDK settings:
-   - `minSdk`
-   - `targetSdk`
-   - `compileSdk`
-   - Kotlin and Gradle plugin versions
-5. Check package identity:
-   - `applicationId`
-   - app label
-   - launcher icon
-6. Run:
+- `pubspec.yaml`
+- `android/app/build.gradle`
+- `android/app/build.gradle.kts`
+- `android/build.gradle`
+- `android/gradle.properties`
+- `android/app/src/main/AndroidManifest.xml`
+- signing configuration files and CI references
 
-   ```bash
-   flutter analyze
-   ```
+## Commands To Run
 
-7. Run tests if available:
+```bash
+.mobile-ops/scripts/flutter-doctor.sh
+.mobile-ops/scripts/check-versioning.sh
+.mobile-ops/scripts/check-permissions.sh
+flutter analyze
+flutter test
+.mobile-ops/scripts/build-android.sh
+```
 
-   ```bash
-   flutter test
-   ```
+If tests do not exist or Flutter is unavailable, report that clearly.
 
-8. Build app bundle:
+## Risk Signals
 
-   ```bash
-   .mobile-ops/scripts/build-android.sh
-   ```
-
-9. Summarize risks before release.
+- Missing or inconsistent version/build number
+- Unsafely committed signing material
+- Debug signing used for release
+- Outdated target SDK or incompatible min SDK
+- Overbroad Android permissions
+- Failing analyze, tests, or app bundle build
 
 ## Output Format
 
-Report:
-
-- release blockers
-- signing risks
-- SDK/version risks
-- test/build result
-- Play Console readiness notes
+Use `reports/release-readiness-report.md`. Report release blockers, signing risks, SDK/version risks, test/build result, and Play Console readiness notes.

@@ -9,6 +9,8 @@ Use this workflow when the platform is unclear or the user asks for a general re
 
    ```bash
    .mobile-ops/scripts/flutter-doctor.sh
+   .mobile-ops/scripts/check-versioning.sh
+   .mobile-ops/scripts/check-secrets.sh
    ```
 
 3. Run static checks:
@@ -30,3 +32,7 @@ Use this workflow when the platform is unclear or the user asks for a general re
    - `workflows/privacy-check.md`
    - `workflows/aso.md`
 7. Summarize release blockers, warnings, and recommended next actions.
+
+## Output Format
+
+Use `reports/release-readiness-report.md`.

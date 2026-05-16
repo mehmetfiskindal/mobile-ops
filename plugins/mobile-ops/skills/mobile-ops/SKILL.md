@@ -1,6 +1,6 @@
 ---
 name: mobile-ops
-description: Audit and automate Flutter/Firebase mobile app operations. Use when the user asks for /mobile-ops firebase-audit, android-release, ios-release, aso-review, privacy-check, or asks to inspect Flutter/Firebase release readiness, store metadata, privacy, permissions, Firebase rules, crash logs, or monetization.
+description: Audit and automate Flutter/Firebase mobile app operations. Use when the user asks for /mobile-ops or /mobil-ops firebase-audit, android-release, ios-release, aso-review, privacy-check, or asks to inspect Flutter/Firebase release readiness, store metadata, privacy, permissions, Firebase rules, crash logs, or monetization.
 ---
 
 # Mobile Ops
@@ -34,6 +34,8 @@ Treat these as prompt shortcuts, not shell commands:
 - `/mobile-ops ios-release`: follow `.mobile-ops/workflows/ios-release.md` when present, then check versioning, secrets, permissions, pods, and iOS build readiness.
 - `/mobile-ops aso-review`: follow `.mobile-ops/workflows/aso.md` or `.mobile-ops/workflows/aso-review.md` when present, then inspect store metadata.
 - `/mobile-ops privacy-check`: follow `.mobile-ops/workflows/privacy-check.md` when present, then inspect permissions, data safety, privacy policy, and Firebase usage.
+
+Also accept `/mobil-ops ...` as a typo-tolerant alias for the same workflows.
 
 ## Operating Rules
 

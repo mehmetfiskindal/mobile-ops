@@ -61,7 +61,22 @@ plugins/mobile-ops/.codex-plugin/plugin.json
 plugins/mobile-ops/skills/mobile-ops/SKILL.md
 ```
 
-When the local plugin is installed or enabled in Codex, use the same prompt shortcuts from the root of a Flutter app:
+To make Codex discover the local marketplace, add this block to `~/.codex/config.toml`:
+
+```toml
+[marketplaces.mobile-ops-local]
+source_type = "local"
+source = "/Users/mehmetfiskindal/mobile-ops"
+```
+
+Then enable the plugin:
+
+```toml
+[plugins."mobile-ops@mobile-ops-local"]
+enabled = true
+```
+
+Restart Codex after changing the config. When the local plugin is enabled, use the same prompt shortcuts from the root of a Flutter app:
 
 ```text
 /mobile-ops firebase-audit
@@ -70,6 +85,8 @@ When the local plugin is installed or enabled in Codex, use the same prompt shor
 /mobile-ops aso-review
 /mobile-ops privacy-check
 ```
+
+`/mobil-ops ...` is accepted as a typo-tolerant alias in the skill instructions, but `/mobile-ops ...` is the canonical form.
 
 The plugin tells Codex to inspect standard Flutter, Firebase, Android, iOS, store metadata, and privacy files, then run matching scripts from `.mobile-ops/scripts/` when this repo is embedded in the app. If you are working directly in this repo, it uses `scripts/` instead.
 

@@ -1,0 +1,20 @@
+{
+  "name": "mobile-ops-local",
+  "interface": {
+    "displayName": "Mobile Ops Local"
+  },
+  "plugins": [
+    {
+      "name": "mobile-ops",
+      "source": {
+        "source": "local",
+        "path": "./plugins/mobile-ops"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

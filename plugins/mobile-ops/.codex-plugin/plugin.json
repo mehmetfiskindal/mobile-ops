@@ -1,0 +1,42 @@
+{
+  "name": "mobile-ops",
+  "version": "0.1.0",
+  "description": "Inspect and automate Flutter/Firebase mobile release operations.",
+  "author": {
+    "name": "Mehmet Fiskindal",
+    "email": "support@example.com",
+    "url": "https://github.com/mehmetfiskindal"
+  },
+  "homepage": "https://github.com/mehmetfiskindal/mobile-ops",
+  "repository": "https://github.com/mehmetfiskindal/mobile-ops",
+  "license": "MIT",
+  "keywords": [
+    "flutter",
+    "firebase",
+    "mobile-release",
+    "app-store",
+    "privacy"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Mobile Ops",
+    "shortDescription": "Audit Flutter/Firebase release readiness",
+    "longDescription": "Use Mobile Ops to inspect Flutter and Firebase projects, run release and privacy signal checks, and produce focused risk reports before Android or iOS releases.",
+    "developerName": "Mehmet Fiskindal",
+    "category": "Coding",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/mehmetfiskindal/mobile-ops",
+    "privacyPolicyURL": "https://github.com/mehmetfiskindal/mobile-ops",
+    "termsOfServiceURL": "https://github.com/mehmetfiskindal/mobile-ops",
+    "defaultPrompt": [
+      "/mobile-ops firebase-audit",
+      "/mobile-ops android-release",
+      "/mobile-ops privacy-check"
+    ],
+    "brandColor": "#2563EB",
+    "screenshots": []
+  }
+}

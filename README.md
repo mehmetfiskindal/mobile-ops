@@ -39,6 +39,27 @@ Then ask Codex:
 Use .mobile-ops/AGENTS.md and .mobile-ops/workflows/firebase-audit.md to audit this project.
 ```
 
+## Update In A Flutter Project
+
+If `.mobile-ops` was added as a git submodule, update it from the Flutter app root:
+
+```bash
+git submodule update --remote .mobile-ops
+git add .mobile-ops
+git commit -m "Update mobile-ops"
+```
+
+If `.mobile-ops` was copied with `degit`, replace it with a fresh copy:
+
+```bash
+rm -rf .mobile-ops
+npx degit mehmetfiskindal/mobile-ops .mobile-ops
+git add .mobile-ops
+git commit -m "Update mobile-ops"
+```
+
+Before replacing a copied `.mobile-ops` folder, move any local custom reports, profiles, or store metadata you want to keep.
+
 ## Prompt Shortcuts
 
 These are human-friendly prompts, not installed shell commands:

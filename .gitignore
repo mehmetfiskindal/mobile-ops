@@ -1,0 +1,31 @@
+.DS_Store
+
+# Flutter and Dart
+.dart_tool/
+.packages
+build/
+coverage/
+
+# Android
+.gradle/
+local.properties
+*.jks
+*.keystore
+key.properties
+
+# iOS
+Pods/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+
+# Secrets and local env
+.env
+.env.*
+*.pem
+*.p8
+service-account*.json
+firebase-service-account*.json
+
+# Dependency folders
+node_modules/
